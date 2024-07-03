@@ -77,3 +77,6 @@ In this setup:<br/>
 - Istio manages all traffic routing, security, and observability from the point of entry.<br/>
 
 By using Istio's ingress gateway, you leverage Istio's powerful features for managing external traffic, eliminating the need for an external ALB.
+
+For more detailed understanding on resource configurations read below...
+ https://istio.io/latest/docs/concepts/traffic-management/#gateways
