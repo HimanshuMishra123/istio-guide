@@ -25,4 +25,3 @@ This controller validates Istio-specific custom resources like VirtualServices a
 
 ![image](https://github.com/HimanshuMishra123/istio-guide/assets/164254902/7f0a4146-9a79-4618-9d83-f26b6aef288d)
 
-![alt text](<Service Mesh explained in 60 minutes _ Istio mTLS and Canary Demo _ Complete beginner level guide 56-59 screenshot.png>)
