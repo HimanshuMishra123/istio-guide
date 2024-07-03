@@ -82,6 +82,7 @@ spec:
 2. Monitor performance and collect feedback.
 3. Gradually increase traffic to the new version.
 4. Fully switch traffic if no issues are detected.
+![Kubernetes Deployment Strategies _ DevOps FAQ _ DevOps DevOps Interview Q A _ #k8s 7-51 screenshot](https://github.com/HimanshuMishra123/istio-guide/assets/164254902/dd975880-8011-4d6e-b9e3-18b154ff5f9c)
 
 ### 5. **A/B Testing Deployment Strategy**
 - **Overview**: Similar to canary, but specifically tests different versions (A/B) with different sets of users to determine which performs better.
@@ -119,4 +120,11 @@ spec:
 
 ---
 
-These notes provide a comprehensive guide to understanding and implementing various Kubernetes deployment strategies, tailored to different application needs and infrastructure capabilities.
+These notes provide a comprehensive guide to understanding and implementing various Kubernetes deployment strategies, tailored to different application needs and infrastructure capabilities. <br/>
+
+for more detail about how deployment strategy works read below..<br/>
+https://www.cncf.io/wp-content/uploads/2020/08/CNCF-Presentation-Template-K8s-Deployment.pdf <br/>
+https://thenewstack.io/deployment-strategies/<br/>
+
+for practise - https://github.com/ContainerSolutions/k8s-deployment-strategies<br/>
+
