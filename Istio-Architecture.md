@@ -2,7 +2,7 @@
 ![image](https://github.com/HimanshuMishra123/istio-guide/assets/164254902/143db1e6-7af0-4bcd-baf6-086ea982356a)
 
 You do not need to install the `istiod` control plane on every node in your Kubernetes cluster. <br/>
-The Istio control plane components are deployed in a central location within your Kubernetes cluster on any one node in a separate namespace 'istio-system' and it does not need to be installed on every node.<br/>
+The Istio control plane components are deployed in a central location within your Kubernetes cluster on any one worder node in a separate namespace 'istio-system' and it does not need to be installed on every node.<br/>
 The primary Istio control plane pod is `istiod`, but depending on the configuration, you might also find other auxiliary pods and services, such as the Istio ingress and egress gateways. <br/>
 The data plane components (sidecars and gateways) are distributed across nodes, while `istiod` handles the configuration and management centrally from control plane.<br/>
 
