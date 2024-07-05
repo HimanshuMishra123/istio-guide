@@ -1,10 +1,10 @@
 
 ![image](https://github.com/HimanshuMishra123/istio-guide/assets/164254902/143db1e6-7af0-4bcd-baf6-086ea982356a)
 
-You do not need to install the `istiod` control plane on every node in your Kubernetes cluster. Here’s how the deployment and distribution of Istio components typically work:
-The Istio control plane components are deployed in a central location within your Kubernetes cluster on any one node in a separate namespace 'istio-system' and it does not need to be installed on every node.
-The primary Istio control plane pod is `istiod`, but depending on the configuration, you might also find other auxiliary pods and services, such as the Istio ingress and egress gateways
-The data plane components (sidecars and gateways) are distributed across nodes, while `istiod` handles the configuration and management centrally from control plane.
+You do not need to install the `istiod` control plane on every node in your Kubernetes cluster. <br/>
+The Istio control plane components are deployed in a central location within your Kubernetes cluster on any one node in a separate namespace 'istio-system' and it does not need to be installed on every node.<br/>
+The primary Istio control plane pod is `istiod`, but depending on the configuration, you might also find other auxiliary pods and services, such as the Istio ingress and egress gateways. <br/>
+The data plane components (sidecars and gateways) are distributed across nodes, while `istiod` handles the configuration and management centrally from control plane.<br/>
 
 ### Deployment of `istiod`
 
@@ -29,17 +29,3 @@ The data plane components (sidecars and gateways) are distributed across nodes, 
 - **Resource Efficiency**: By running `istiod` as a centralized service rather than on every node, you save resources and simplify management.
 - **Scalability**: You can scale `istiod` horizontally if necessary, depending on the load and the size of your cluster.
 - **Management**: Centralized control makes it easier to manage configuration, updates, and policies from a single point.
-
-### Example Configuration
-
-Typically, you would deploy Istio using a Helm chart or the `istioctl` command, which handles the deployment of `istiod` and the necessary components. Here’s a basic example using `istioctl`:
-
-```sh
-istioctl install --set profile=default
-```
-
-After installation, `istiod` will be running in the `istio-system` namespace, and you can verify its status with:
-
-```sh
-kubectl get pods -n istio-system
-```
