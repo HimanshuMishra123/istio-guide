@@ -1,7 +1,7 @@
 ## Admission Controllers
 
 Admission controllers in Kubernetes enforce policies on objects during their creation or modification. They intercept requests to the Kubernetes API server before objects are persisted and can modify or deny requests based on predefined rules. 
-There are 30+ default Admission controllers comes with the Kubernetes cluster. Some are enabled and some you have to enable.
+There are 30+ Built-in Admission controllers comes with the Kubernetes. These are compiled into the Kubernetes API server . Some are enabled and some you have to enable. Examples include NamespaceLifecycle, LimitRanger, ResourceQuota, and PodSecurityPolicy.
 
 ![alt text](<Service Mesh explained in 60 minutes _ Istio mTLS and Canary Demo _ Complete beginner level guide 55-38 screenshot.png>)
 
@@ -25,8 +25,8 @@ This controller validates Istio-specific custom resources like VirtualServices a
 
 ![image](https://github.com/HimanshuMishra123/istio-guide/assets/164254902/7f0a4146-9a79-4618-9d83-f26b6aef288d)
 
-**Full working**:
-The webhook functionality for admission controllers operates as follows:
+**Working of Webhook**:
+The webhook functionality for admission controllers operates as follows-
 
 1. **Kubernetes API Server**:
    - The Kubernetes API server is responsible for invoking admission webhooks.
@@ -39,13 +39,16 @@ The webhook functionality for admission controllers operates as follows:
 
 Here's the flow of how the webhook interaction works between Kubernetes and Istio:
 
-1. **API Request**: A request to create or modify a Kubernetes resource (e.g., a pod) is sent to the Kubernetes API server.
+1. **API Request**: A request to create or modify a Kubernetes resource (e.g., a pod) is sent to the Kubernetes API server. the API server first handles authentication and authorization.
 
 2. **Admission Control**:
    - **Built-in Admission Controllers**: The API server first processes any built-in admission controllers.
-   - **Mutating Admission Webhook**: If configured, the API server forwards the request to the mutating admission webhook endpoint. This endpoint is specified in the `MutatingWebhookConfiguration` CRD.
-   
-3. **Webhook Invocation**:
+   - **Dynamic Admission Webhook Controllers**: If configured, Istio leverages dynamic admission controller the Mutating Admission Webhook Controller and the Validating Admission Webhook Controller. the API server forwards the request to the mutating admission webhook endpoint first. This endpoint is specified in the `MutatingWebhookConfiguration` CRD. This configuration specifies rules for the Mutating Admission Webhook Controller, such as:
+   - The types of resources it applies to (e.g., pods).
+   - The namespace scope.
+   - The service endpoint to which the API server should forward the request for mutation.
+
+3. **Mutating Admission Webhook invoked**:
    - The API server sends the admission review request to the Istio sidecar injector webhook service, which is an external HTTP(S) service running within the Kubernetes cluster, managed by Istio.
 
 4. **Webhook Processing**:
@@ -53,8 +56,8 @@ Here's the flow of how the webhook interaction works between Kubernetes and Isti
    - The webhook service then sends the modified admission review response back to the Kubernetes API server.
 
 5. **Validation**:
-   - **Validating Admission Webhook**: The API server may also forward the (potentially mutated) request to a validating admission webhook, if configured, to ensure the final object meets all necessary policies.
+   - **Validating Admission Webhook invoked**: The API server may also forward the (potentially mutated) request to a validating admission webhook, if configured, to ensure the final object meets all necessary policies.
 
 6. **Persistence**: Once all admission controllers (both built-in and webhook-based) have processed the request, and assuming all validations pass, the API server persists the final resource configuration in etcd.
 
-In summary, the actual webhook service (like Istio's sidecar injector) runs as an external service within the Kubernetes cluster, but the Kubernetes API server is responsible for invoking this service as part of the admission control process.
+In summary, the actual webhook services (like Istio's sidecar injector) runs as an external service within the Kubernetes cluster, but the Kubernetes API server is responsible for invoking this service as part of the admission control process which are written in go languages.
