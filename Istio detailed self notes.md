@@ -41,7 +41,7 @@ there are multiple profiles Istio provides like production, development, demo so
    kubectl label namespace default istio-injection=enabled
    ```
 
-** now you can deploy your application using Kubectl deploy and sidecar will be injected automatically.
+** now you can deploy your application using Kubectl apply and sidecar will be injected automatically.
 ```sh
 kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 ```
