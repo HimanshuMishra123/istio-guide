@@ -9,7 +9,7 @@ The data plane components (sidecars and gateways) are distributed across nodes, 
 ### Deployment of `istiod`
 
 1. **Centralized Control Plane**: 
-   - **Deployment**: The `istiod` control plane component is deployed as a single or a set of pods (typically on one node, but it can be scaled horizontally if needed one per node) in a designated namespace, usually `istio-system`.
+   - **Deployment**: The `istiod` control plane component is deployed as a single or a set of pods (typically on one node, but it can be scaled horizontally if needed) in a designated namespace, usually `istio-system`.
    - **Node Distribution**: `istiod` does not need to run on every node. It runs in a central location within the cluster, and its services are exposed to all nodes via Kubernetes services.
 
 2. **Service Discovery**: 
